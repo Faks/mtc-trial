@@ -1,4 +1,5 @@
 <?php
 // Application middleware
 
-// e.g: $app->add(new \Slim\Csrf\Guard);
+#CRF Bug Fix
+$app->add($container->get('csrf'));

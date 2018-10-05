@@ -63,6 +63,8 @@
       <path value="$PROJECT_DIR$/vendor/rubellum/slim-blade-view" />
       <path value="$PROJECT_DIR$/vendor/philo/laravel-blade" />
       <path value="$PROJECT_DIR$/vendor/illuminate/events" />
+      <path value="$PROJECT_DIR$/vendor/slim/csrf" />
+      <path value="$PROJECT_DIR$/vendor/illuminate/pagination" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />

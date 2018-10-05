@@ -25,25 +25,23 @@
 	 * Class Auth
 	 * @package src\Controllers
 	 */
-	class Auth
+	class AuthController
 	{
 		use Helpers;
 		
-		/**
-		 * @param $request
-		 * @return mixed
-		 */
-		public function Validator($request)
+		public static $rules_login =
+		[
+			'username' => 'required|alpha_dash',
+			'password' => 'required|min:6',
+		];
+		
+		
+		public function DoAddUser($request)
 		{
-			$validatorFactory = new ValidatorFactory();
-			
-			$validator = $validatorFactory->make($request->getParams(),
-			[
-				'username' => 'required|alpha_dash',
-				'password' => 'required|min:6',
-			]);
-			
-			return $validator;
+			$store = new Users();
+			$store->username =  Purifier::clean($request->getParam('username'));
+			$store->password = \hash('sha512', Purifier::clean($request->getParam('password')) );
+			$store->save();
 		}
 		
 		/**
@@ -52,15 +50,9 @@
 		 */
 		public function DoLogin($request)
 		{
-//			$store = new Users();
-//			$store->username =  Purifier::clean($request->getParam('username'));
-//			$store->password = \hash('sha512', Purifier::clean($request->getParam('password')) );
-//			$store->save();
-			
-			
 			try
 			{
-				$auth_user = Users::where(['username' => Purifier::clean($request->getParam('username')) , 'password' => \hash('sha512',Purifier::clean($request->getParam('password')) ) ])->firstOrFail();
+				$auth_user = Users::where(['username' => Purifier::clean($request->getParam('username')) , 'password' => \hash('sha512', Purifier::clean($request->getParam('password')) ) ])->firstOrFail();
 				
 				#Removing Error Text
 				unset($_SESSION['errors']);
@@ -76,7 +68,6 @@
 			}
 			catch (ModelNotFoundException $exception)
 			{
-				$errors[] = 'Wrong Username or Password';
 				$_SESSION["errors"] =
 				[
 					Purifier::clean('Wrong Username or Password')

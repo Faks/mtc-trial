@@ -17,6 +17,20 @@ $container['blade'] = function ($container)
 	);
 };
 
+$container['csrf'] = function ($c)
+{
+	$csrf = new \Slim\Csrf\Guard;
+	$csrf->setPersistentTokenMode(true);
+	$csrf->setFailureCallable(function ($request, $response, $next)
+	{
+		$request = $request->withAttribute("csrf_status", false);
+		return $next($request, $response);
+	});
+	
+	return $csrf;
+};
+
+
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];

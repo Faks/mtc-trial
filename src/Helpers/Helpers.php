@@ -22,6 +22,20 @@
 	trait Helpers
 	{
 		/**
+		 * @param $request
+		 * @param $rules
+		 * @return mixed
+		 */
+		public function Validator($request , array $rules)
+		{
+			$validatorFactory = new ValidatorFactory();
+			
+			$validator = $validatorFactory->make($request->getParams(), $rules);
+		
+			return $validator;
+		}
+		
+		/**
 		 * @return self
 		 */
 		public static function init()

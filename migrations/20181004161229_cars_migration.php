@@ -10,7 +10,7 @@
 			$this->schema->create('cars', function(Blueprint $table)
 			{
 				$table->increments('id');
-				$table->string('make')->nullable();
+				$table->string('Make')->nullable();
 				$table->string('Name')->nullable();
 				$table->string('Trim')->nullable();
 				$table->string('Year')->nullable();
@@ -24,7 +24,7 @@
 				$table->string('Make_Display')->nullable();
 				$table->string('Weight_KG')->nullable();
 				$table->string('Transmission_Type')->nullable();
-				$table->float('Price');
+				$table->string('Price')->nullable();
 				$table->timestamp('created_at')->nullable();
 				$table->timestamp('updated_at')->nullable();
 			});

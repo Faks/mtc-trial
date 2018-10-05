@@ -38,20 +38,7 @@
 				<div class="row col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 custom-form">
 					<h2 class="text-primary text-center">Login</h2>
 					
-						@if (!empty($errors))
-							@php unset($_SESSION['errors']) @endphp
-							<div class="alert alert-danger">
-							@foreach ($errors->all() as $error)
-								{!! $error !!} <br>
-							@endforeach
-						</div>
-						@endif
-					
-						@if (!empty($_SESSION["errors"][0]))
-							<div class="alert alert-danger">
-								{!! $_SESSION["errors"][0] !!} <br>
-							</div>
-						@endif
+					@include('office.template.errors')
 						
 					<form class="form-horizontal" id="login-input" action="/login" method="POST">
 						<div class="form-group">
@@ -73,6 +60,9 @@
 								<button class="btn btn-info btn-100"><i class="fa fa-sign-in fa-2x"></i></button>
 							</div>
 						</div>
+						
+						<input type="hidden" name="{{ $nameKey }}" value="{{ $name }}">
+						<input type="hidden" name="{{ $valueKey }}" value="{{ $value }}">
 					
 					</form>
 				</div>
