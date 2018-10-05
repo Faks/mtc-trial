@@ -15,21 +15,24 @@
 	namespace src\Controllers;
 	
 	
-	
-	use Illuminate\Contracts\Auth\Access\Authorizable;
 	use Illuminate\Database\Eloquent\ModelNotFoundException;
-	use Illuminate\Support\Facades\Hash;
-	use Slim\Middleware\Session;
 	use src\Helpers\Helpers;
 	use src\Helpers\ValidatorFactory;
 	use src\Models\Users;
 	use src\Purifier;
 	
-	
+	/**
+	 * Class Auth
+	 * @package src\Controllers
+	 */
 	class Auth
 	{
 		use Helpers;
 		
+		/**
+		 * @param $request
+		 * @return mixed
+		 */
 		public function Validator($request)
 		{
 			$validatorFactory = new ValidatorFactory();
@@ -43,7 +46,10 @@
 			return $validator;
 		}
 		
-		
+		/**
+		 * @param $request
+		 * @return bool
+		 */
 		public function DoLogin($request)
 		{
 //			$store = new Users();
@@ -80,6 +86,9 @@
 			}
 		}
 		
+		/**
+		 * Session Cleanup
+		 */
 		public function DoLogout()
 		{
 			session_unset();
