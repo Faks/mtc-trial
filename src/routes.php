@@ -5,20 +5,17 @@
 	use src\Controllers\Auth;
 	use src\Controllers\HomeController;
 
-// Routes
-	
+	// Routes
 	$app->get('/', function (Request $request, Response $response, array $args)
 	{
 	    // Sample log message
 	//    $this->logger->info("Slim-Skeleton '/' route");
-		
-		
+		#Debug API
 	    // Render index view
 	    return $this->renderer->render($response, 'test.php', $args);
 	})->setName('home');
 	
 
-# Define named route
 	$app->get('/debug', function ($request, $response, $args)
 	{
 		$test = HomeController::init()->debug();
@@ -35,13 +32,13 @@
 	})->setName('login');
 	
 	
-	
 	$app->get('/logout', function ($request, $response, $args) use ($app)
 	{
 		Auth::init()->DoLogout();
 		
 		return $response->withRedirect($this->router->pathFor('login'));
 	})->setName('logout');
+	
 	
 	$app->post('/login', function ($request, $response, $args) use($app)
 	{
@@ -66,10 +63,16 @@
 	})->setName('do-login');
 	
 	
-	
 	$app->get('/office/dashboard', function ($request, $response, $args) use ($app)
 	{
-		return $this->blade->render($response, 'office.dashboard.index');
+		if (!empty($_SESSION['auth']))
+		{
+			return $this->blade->render($response, 'office.dashboard.index');
+		}
+		else
+		{
+			return $response->withRedirect($this->router->pathFor('login'));
+		}
 		
 	})->setName('office-dashboard');
 	
