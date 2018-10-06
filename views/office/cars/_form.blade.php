@@ -1,7 +1,14 @@
 <div class="content">
 	@include('office.template.errors')
 	
-	<form action="/office/dashboard/cars/create" name="form-create-store-car" class="form-horizontal" method="post" enctype="multipart/form-data" style="margin-left: 5%;">
+	<form action="{{ $action }}" class="form-horizontal" method="post" enctype="multipart/form-data" style="margin-left: 5%;">
+		
+		<div class="row">
+			<div class="col-md-8">
+				<img src="{{ $model->Image ?? false }}" class="img-responsive">
+			</div>
+		</div>
+		
 		
 		<div class="row">
 			<div class="col-md-4">
@@ -10,7 +17,7 @@
 						Izstrādātājs
 					</label>
 					
-					<input type="text" name="Make" class="form-control border-input">
+					<input type="text" name="Make" value="{{ $model->Make ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 			
@@ -20,7 +27,7 @@
 						Nosaukums
 					</label>
 					
-					<input type="text" name="Name" class="form-control border-input">
+					<input type="text" name="Name" value="{{ $model->Name ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 		</div>
@@ -33,7 +40,7 @@
 						Tipāža
 					</label>
 					
-					<input type="text" name="Trim" class="form-control border-input">
+					<input type="text" name="Trim" value="{{ $model->Trim ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 			
@@ -43,7 +50,7 @@
 						Gads
 					</label>
 					
-					<input type="text" name="Year" class="form-control border-input">
+					<input type="text" name="Year" value="{{ $model->Year ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 		</div>
@@ -55,7 +62,7 @@
 						Uzbūve
 					</label>
 					
-					<input type="text" name="Body" class="form-control border-input">
+					<input type="text" name="Body" value="{{ $model->Body ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 			
@@ -65,7 +72,7 @@
 						Motorā Pozīcija
 					</label>
 					
-					<input type="text" name="Engine_Position" class="form-control border-input">
+					<input type="text" name="Engine_Position" value="{{ $model->Engine_Position ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 		</div>
@@ -77,7 +84,7 @@
 						Motora Tips
 					</label>
 					
-					<input type="text" name="Engine_Type" class="form-control border-input">
+					<input type="text" name="Engine_Type" value="{{ $model->Engine_Type ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 			
@@ -87,7 +94,7 @@
 						Motorā Kompresija
 					</label>
 					
-					<input type="text" name="Engine_Compression" class="form-control border-input">
+					<input type="text" name="Engine_Compression" value="{{ $model->Engine_Compression ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 		</div>
@@ -100,7 +107,7 @@
 						Motora Degviela
 					</label>
 					
-					<input type="text" name="Engine_Fuel" class="form-control border-input">
+					<input type="text" name="Engine_Fuel" value="{{ $model->Engine_Fuel ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 			
@@ -110,7 +117,7 @@
 						Motorā Pozīcija
 					</label>
 					
-					<input type="text" name="Engine_Position" class="form-control border-input">
+					<input type="text" name="Engine_Position" value="{{ $model->Engine_Position ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 		</div>
@@ -122,7 +129,7 @@
 						Ražota
 					</label>
 					
-					<input type="text" name="Country" class="form-control border-input">
+					<input type="text" name="Country" value="{{ $model->Country ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 			
@@ -132,7 +139,7 @@
 						Modelis
 					</label>
 					
-					<input type="text" name="Make_Display" class="form-control border-input">
+					<input type="text" name="Make_Display" value="{{ $model->Make_Display ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 		</div>
@@ -145,7 +152,7 @@
 						Svars
 					</label>
 					
-					<input type="text" name="Weight_KG" class="form-control border-input">
+					<input type="text" name="Weight_KG" value="{{ $model->Weight_KG ?? false }}" class="form-control border-input">
 				</div>
 			</div>
 			
@@ -155,7 +162,7 @@
 						Ātrumkārba
 					</label>
 					
-					<input type="text" name="Transmission_Type" class="form-control border-input">
+					<input type="text" name="Transmission_Type" value="{{ $model->Transmission_Type ?? false }}"  class="form-control border-input">
 				</div>
 			</div>
 		</div>
@@ -167,7 +174,7 @@
 						Cena
 					</label>
 					
-					<input type="text" name="Price" class="form-control border-input">
+					<input type="text" name="Price" value="{{ $model->Price ?? false }}"  class="form-control border-input">
 				</div>
 			</div>
 			
@@ -196,9 +203,11 @@
 			</div>
 		</div>
 		
+		<input type="hidden" name="{{ $nameKey }}" value="{{ $name }}">
+		<input type="hidden" name="{{ $valueKey }}" value="{{ $value }}">
 		
 		<div class="row">
-			<button class="btn btn-default btn-info btn-default" type="submit">Saglabāt</button>
+			<button name="id" value="{{ $model->id ?? false }}" class="btn btn-default btn-info btn-default" type="submit">Saglabāt</button>
 		</div>
 		
 	</form>

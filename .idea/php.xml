@@ -65,6 +65,8 @@
       <path value="$PROJECT_DIR$/vendor/illuminate/events" />
       <path value="$PROJECT_DIR$/vendor/slim/csrf" />
       <path value="$PROJECT_DIR$/vendor/illuminate/pagination" />
+      <path value="$PROJECT_DIR$/vendor/peppeocchi/php-cron-scheduler" />
+      <path value="$PROJECT_DIR$/vendor/mtdowling/cron-expression" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.5.0" />

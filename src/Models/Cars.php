@@ -34,7 +34,7 @@
 		[
 			'Make' , 'Name' , 'Trim' , 'Year' , 'Body' , 'Engine_Position' ,
 			'Engine_Type', 'Engine_Compression' , 'Engine_Fuel' , 'Image',
-			'Country' , 'Make_Display', 'Weight_KG', 'Transmission_Type' , 'Price'
+			'Country' , 'Make_Display', 'Weight_KG', 'Transmission_Type' , 'Price' , 'Is_API'
 		];
 		
 		protected $hidden = ['id'];

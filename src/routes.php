@@ -2,6 +2,7 @@
 	
 	use Slim\Http\Request;
 	use Slim\Http\Response;
+	use src\Controllers\APIController;
 	use src\Controllers\AuthController;
 	use src\Controllers\HomeController;
 
@@ -85,7 +86,9 @@
 	{
 		if (!empty($_SESSION['auth']))
 		{
-			return $this->blade->render($response, 'office.cars.index');
+			$model = HomeController::init()->ShowCarsListing();
+			
+			return $this->blade->render($response, 'office.cars.index' , compact('model'));
 		}
 		else
 		{
@@ -99,7 +102,13 @@
 	{
 		if (!empty($_SESSION['auth']))
 		{
-			return $this->blade->render($response, 'office.cars.create' , compact('model'));
+			// CSRF token name and value
+			$nameKey = $this->csrf->getTokenNameKey();
+			$valueKey = $this->csrf->getTokenValueKey();
+			$name = $request->getAttribute($nameKey);
+			$value = $request->getAttribute($valueKey);
+			
+			return $this->blade->render($response, 'office.cars.create' , compact('model' , 'nameKey' ,'valueKey' , 'name' , 'value'));
 		}
 		else
 		{
@@ -108,16 +117,16 @@
 		
 	})->setName('office-dashboard-create-car');
 	
+	
 	$app->post('/office/dashboard/cars/create' , function ($request, $response, $args) use($app)
 	{
 		$validator = HomeController::init()->Validator($request , HomeController::$create_rules);
 		
 		if ($validator->passes())
 		{
-			HomeController::init()->DoCreateCar($request);
+			HomeController::init()->DoCreateCar($request , $response);
 			
 			return $response->withRedirect($this->router->pathFor('office-dashboard-cars'));
-			
 		}
 		else
 		{
@@ -127,6 +136,81 @@
 		}
 		
 	})->setName('office-dashboard-create-car-store');
+	
+	
+	$app->get('/office/dashboard/car/update/{id}', function ($request, $response, $args) use ($app)
+	{
+		if (!empty($_SESSION['auth']))
+		{
+			$model = HomeController::init()->ShowUpdateCar($args['id']);
+			
+			// CSRF token name and value
+			$nameKey = $this->csrf->getTokenNameKey();
+			$valueKey = $this->csrf->getTokenValueKey();
+			$name = $request->getAttribute($nameKey);
+			$value = $request->getAttribute($valueKey);
+			
+			return $this->blade->render($response, 'office.cars.update' , compact('model' , 'nameKey' ,'valueKey' , 'name' , 'value'));
+		}
+		else
+		{
+			return $response->withRedirect($this->router->pathFor('login'));
+		}
+		
+	})->setName('office-dashboard-update-car');
+	
+	
+	$app->post('/office/dashboard/car/update' , function ($request, $response, $args) use($app)
+	{
+		$validator = HomeController::init()->Validator($request , HomeController::$update_rules);
+		
+		if ($validator->passes())
+		{
+			#Model
+			HomeController::init()->DoUpdateCar($request);
+			
+			return $response->withRedirect($this->router->pathFor('office-dashboard-cars'));
+		}
+		else
+		{
+			$errors = $validator->errors(); // errors collection
+			
+			return $this->blade->render($response, 'office.cars.update' , compact('errors' ));
+		}
+		
+	})->setName('office-dashboard-update-car-store');
+	
+	
+	$app->get('/office/dashboard/car/destroy/{id}' , function ($request, $response, $args)  use ($app)
+	{
+		HomeController::init()->DoDestroyCar($args['id']);
+		
+		return $response->withRedirect($this->router->pathFor('office-dashboard-cars'));
+	});
+	
+	
+	
+	$app->get('/office/dashboard/api/create/cars', function ($request, $response, $args) use ($app)
+	{
+		if (!empty($_SESSION['auth']))
+		{
+			APIController::init()->DoCreateCars();
+			
+			return $response->withRedirect($this->router->pathFor('office-dashboard-cars'));
+
+//			echo '<pre>';
+//			dd($request->getParams());
+//			echo '</pre>';
+			
+//			return $this->blade->render($response, 'office.cars.update' , compact('model' , 'nameKey' ,'valueKey' , 'name' , 'value'));
+		}
+		else
+		{
+			return $response->withRedirect($this->router->pathFor('login'));
+		}
+		
+	})->setName('office-dashboard-api-cars-create');
+	
 	
 	#$_POST
 	#$request->getParam('username')

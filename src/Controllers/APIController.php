@@ -15,7 +15,11 @@
 	namespace src\Controllers;
 	
 	
+	use Illuminate\Database\Eloquent\ModelNotFoundException;
 	use src\Helpers\Helpers;
+	use src\Models\Cars;
+	use src\Purifier;
+	use src\Helpers\Currency;
 	
 	/**
 	 * Class APIController
@@ -43,5 +47,41 @@
 			curl_close ($ch);
 			
 			return $result;
+		}
+		
+		public function DoCreateCars()
+		{
+			foreach ((array)json_decode($this->API(),true) as $item => $key)
+			{
+				foreach ((array)$key as $car_item => $car_key)
+				{
+					try
+					{
+						
+						Cars::updateOrCreate
+						([
+							'Make' => Purifier::clean($car_key['model_make_id']),
+							'Name' => Purifier::clean($car_key['model_name']),
+							'Trim' => Purifier::clean($car_key['model_trim']),
+							'Year' => Purifier::clean((integer)$car_key['model_year']),
+							'Body' => Purifier::clean($car_key['model_body']),
+							'Engine_Position' => Purifier::clean($car_key['model_engine_position']),
+							'Engine_Type' => Purifier::clean($car_key['model_engine_type']),
+							'Engine_Compression' => Purifier::clean($car_key['model_engine_compression']),
+							'Engine_Fuel' => Purifier::clean($car_key['model_engine_fuel']),
+							'Country' => Purifier::clean($car_key['make_country']),
+							'Make_Display' => Purifier::clean($car_key['model_make_display']),
+							'Weight_KG' => Purifier::clean($car_key['model_weight_kg']),
+							'Transmission_Type' => Purifier::clean($car_key['model_transmission_type']),
+							'Price' => Purifier::clean(Currency::Formatted()),
+							'Is_API' => 'yes'
+						]);
+					}
+					catch (ModelNotFoundException $exception)
+					{
+						die('api save failed');
+					}
+				}
+			}
 		}
 	}
