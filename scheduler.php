@@ -23,22 +23,22 @@
 	$scheduler = new Scheduler();
 	
 	// ... configure the scheduled jobs (see below) ...
-//	$scheduler->call
-//	([
-//		APIController::init()->DoCreateCars()
-//	])->everyMinute();
+	$scheduler->call
+	([
+		APIController::init()->DoCreateCars()
+	])->everyFiveMinutes();
 
 	
 //	$scheduler->php('/templates/test.php')->everyMinute();
 	
-	$scheduler->call
-	(
-		function ()
-		{
-			return APIController::init()->DoCreateCars();
-
-		}
-	)->everyMinute()->output('scheduler.log');
+//	$scheduler->call
+//	(
+//		function ()
+//		{
+//			return APIController::init()->DoCreateCars();
+//
+//		}
+//	)->everyMinute()->output('scheduler.log');
 
 	
 	// Let the scheduler execute jobs which are due.
