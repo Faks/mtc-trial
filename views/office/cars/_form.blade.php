@@ -177,7 +177,18 @@
 					<input type="text" name="Price" value="{{ $model->Price ?? false }}"  class="form-control border-input">
 				</div>
 			</div>
-			
+		</div>
+		
+		<div class="row">
+			<div class="col-md-8">
+				<div class="form-group">
+					<label for="brand_img" style="display: block;">
+						Tags
+					</label>
+					
+					<input type="text" name="Tags" value="{{ $model->Tags ?? false }}"  class="form-control border-input">
+				</div>
+			</div>
 		</div>
 
 		<div class="row">

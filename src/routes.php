@@ -5,24 +5,39 @@
 	use src\Controllers\APIController;
 	use src\Controllers\AuthController;
 	use src\Controllers\HomeController;
-
+	
 	// Routes
 	$app->get('/', function (Request $request, Response $response, array $args)
 	{
-	    // Sample log message
-	//    $this->logger->info("Slim-Skeleton '/' route");
-		#Debug API
-	    // Render index view
-	    return $this->renderer->render($response, 'test.php', $args);
+		$model = HomeController::init()->ShowCarsSearchListing();
+		$model_tags = HomeController::init()->TagsFilter();
+		
+		// CSRF token name and value
+		$nameKey = $this->csrf->getTokenNameKey();
+		$valueKey = $this->csrf->getTokenValueKey();
+		$name = $request->getAttribute($nameKey);
+		$value = $request->getAttribute($valueKey);
+		
+	    return $this->blade->render($response, 'office_user.index', compact('model' , 'model_tags' , 'nameKey' ,'valueKey' , 'name' , 'value'));
 	})->setName('home');
 	
-
-	$app->get('/debug', function ($request, $response, $args)
-	{
-		$test = HomeController::init()->debug();
-		return $this->blade->render($response, 'debug', compact('test' , 'args'));
-	})->setName('profile');
 	
+	$app->get('/name/filter', function (Request $request, Response $response, array $args)
+	{
+		return HomeController::init()->NameFilterAjax();
+	})->setName('name-filter');
+
+	
+	$app->get('/price/filter', function (Request $request, Response $response, array $args)
+	{
+		return HomeController::init()->PriceFilterAjax();
+	})->setName('price-filter');
+	
+	
+	$app->get('/country/filter', function (Request $request, Response $response, array $args)
+	{
+		return HomeController::init()->CountryFilterAjax();
+	})->setName('country-filter');
 	
 	
 	$app->get('/login', function ($request, $response, $args) use ($app)
@@ -150,7 +165,7 @@
 			$name = $request->getAttribute($nameKey);
 			$value = $request->getAttribute($valueKey);
 			
-			return $this->blade->render($response, 'office.cars.update' , compact('model' , 'nameKey' ,'valueKey' , 'name' , 'value'));
+			return $this->blade->render($response, 'office.cars.update' , compact('model' , 'nameKey' ,'valueKey' , 'name' , 'value' , 'args'));
 		}
 		else
 		{
@@ -197,12 +212,6 @@
 			APIController::init()->DoCreateCars();
 			
 			return $response->withRedirect($this->router->pathFor('office-dashboard-cars'));
-
-//			echo '<pre>';
-//			dd($request->getParams());
-//			echo '</pre>';
-			
-//			return $this->blade->render($response, 'office.cars.update' , compact('model' , 'nameKey' ,'valueKey' , 'name' , 'value'));
 		}
 		else
 		{

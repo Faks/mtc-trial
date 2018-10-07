@@ -10,5 +10,5 @@
 
 <!-- Bootstrap Custom CSS     -->
 <link href="/assets/css/boostrap-custom.css" rel="stylesheet" />
-
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+@stack('content_css')

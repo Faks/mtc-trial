@@ -38,7 +38,7 @@
 			return APIController::init()->DoCreateCars();
 
 		}
-	)->everyMinute();
+	)->everyMinute()->output('scheduler.log');
 
 	
 	// Let the scheduler execute jobs which are due.

@@ -29,35 +29,11 @@
 			</div>
 		</div>
 		
-		
-		<!-- Modal -->
-		<div class="modal fade" id="Confirm" tabindex="-1" role="dialog" aria-labelledby="confirm-title-label" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="confirm-title-label">Delete title</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						Vai esat parliecinati ka velaties dzest ?
-					</div>
-					<div class="modal-footer">
-						<a type="button" class="btn btn-secondary" data-dismiss="modal">Ne</a>
-						<a href="#" type="button"  class="btn btn-danger">Ja</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
 		@include('office.template.footer')
 	
 	</div>
 </body>
 
 <!--   Core JS Files   -->
-@include('office.template.sidebar')
-
+@include('office.template.script')
 </html>

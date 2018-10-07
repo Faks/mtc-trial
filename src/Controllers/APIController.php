@@ -73,7 +73,8 @@
 							'Make_Display' => Purifier::clean($car_key['model_make_display']),
 							'Weight_KG' => Purifier::clean($car_key['model_weight_kg']),
 							'Transmission_Type' => Purifier::clean($car_key['model_transmission_type']),
-							'Price' => Purifier::clean(Currency::Formatted()),
+							'Price' => Purifier::clean(Helpers::Formatted()),
+							'Tags' => Purifier::clean(Helpers::RandNames()),
 							'Is_API' => 'yes'
 						]);
 					}

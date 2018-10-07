@@ -36,7 +36,8 @@
 		<div class="container">
 			<div class="container-fluid">
 				<div class="row col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 custom-form">
-					<h2 class="text-primary text-center">Login</h2>
+					<h2 class="text-primary text-center">Ienākt</h2>
+					
 					
 					@include('office.template.errors')
 						
@@ -65,6 +66,11 @@
 						<input type="hidden" name="{{ $valueKey }}" value="{{ $value }}">
 					
 					</form>
+					
+					
+					<div class="form-group">
+						<a href="/" title="Atgriezteis Galveno Lapu" class="btn btn-info btn-100"><i class="fa fa-home fa-2x"></i></a>
+					</div>
 				</div>
 			</div>
 		</div>

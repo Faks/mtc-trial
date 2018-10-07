@@ -24,6 +24,7 @@
 				$table->string('Make_Display')->nullable();
 				$table->string('Weight_KG')->nullable();
 				$table->string('Transmission_Type')->nullable();
+				$table->string('Tags')->nullable();
 				$table->string('Price')->nullable();
 				$table->enum('Is_API', array('yes' , 'no'))->default('no');
 				$table->timestamp('created_at')->nullable();

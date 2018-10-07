@@ -132,6 +132,7 @@
 				$do_create_car->Make_Display = Purifier::clean($request->getParam('Make_Display'));
 				$do_create_car->Weight_KG = Purifier::clean($request->getParam('Weight_KG'));
 				$do_create_car->Transmission_Type = Purifier::clean($request->getParam('Transmission_Type'));
+				$do_create_car->Tags = Purifier::clean($request->getParam('Tags'));
 				$do_create_car->Price = Purifier::clean($request->getParam('Price'));
 				$do_create_car->saveOrFail();
 			}
@@ -187,6 +188,7 @@
 					'Make_Display' => Purifier::clean($request->getParam('Make_Display')),
 					'Weight_KG' => Purifier::clean($request->getParam('Weight_KG')),
 					'Transmission_Type' => Purifier::clean($request->getParam('Transmission_Type')),
+					'Tags' => Purifier::clean($request->getParam('Tags')),
 					'Price' => Purifier::clean($request->getParam('Price')),
 				]);
 				
@@ -206,7 +208,7 @@
 					try
 					{
 						#Resize and Store Image
-						Image::make($_FILES['Image']['tmp_name'])->resize(300, 200)->save($file_name_generate);
+						Image::make($_FILES['Image']['tmp_name'])->resize(800, 533)->save($file_name_generate);
 						
 						$find_car->update(
 						[
@@ -225,6 +227,9 @@
 			}
 		}
 		
+		/**
+		 * @param $id
+		 */
 		public function DoDestroyCar($id)
 		{
 			try
@@ -244,5 +249,49 @@
 		public function ShowCarsListing()
 		{
 			return Cars::OrderBy('id' , 'desc')->paginate(10)->setPath('/office/dashboard/cars');
+		}
+		
+		/**
+		 * @return mixed
+		 */
+		public function ShowCarsSearchListing()
+		{
+			if (!empty($_SERVER['QUERY_STRING']))
+			{
+				return Cars::Filter(array_filter($_GET))->OrderBy('id' , 'desc')->paginate(8)->setPath('?'. $_SERVER['QUERY_STRING']);
+			}
+			else
+			{
+				return Cars::Filter(array_filter($_GET))->OrderBy('id' , 'desc')->paginate(8)->setPath('/');
+			}
+		}
+		
+		public function TagsFilter()
+		{
+			return Cars::select('Tags','id')->distinct('Tags')->groupBy('Tags')->get();
+		}
+		
+		/**
+		 * @return string
+		 */
+		public function NameFilterAjax()
+		{
+			return json_encode(Cars::select('Name')->distinct('Name')->groupBy('Name')->get()->pluck('Name'));
+		}
+		
+		/**
+		 * @return string
+		 */
+		public function PriceFilterAjax()
+		{
+			return json_encode(Cars::select('Price')->distinct('Price')->groupBy('Price')->get()->pluck('Price'));
+		}
+		
+		/**
+		 * @return string
+		 */
+		public function CountryFilterAjax()
+		{
+			return json_encode(Cars::select('Country')->distinct('Country')->groupBy('Country')->get()->pluck('Country'));
 		}
 	}
