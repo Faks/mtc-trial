@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="a5ca33d0-2ba5-446f-9320-2b70dcb509e8" name="mtc" url="https://mtc.solum-designum.com">
-        <fileTransfer host="173.249.33.8" port="22" rootFolder="/var/www/html_public/dev/slim_3_1.localhost" accessType="SFTP">
+        <fileTransfer host="173.249.33.8" port="22" rootFolder="/home/faks/www/html_public/localhost/mtc_trial.localhost" accessType="SFTP">
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>

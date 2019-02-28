@@ -1,0 +1,239 @@
+@import "../css/bootstrap.min.css";
+@import "../css/jasny-bootstrap.css";
+
+@import "../css/paper-dashboard.css";
+@import "../css/animate.min.css";
+
+@import "../css/font-awesome.min.css";
+@import "../css/summernote.css";
+
+body
+{
+    /* Temp fix for sidebar but buggy*/
+    position:inherit;
+    width: inherit;
+    height: inherit;
+    box-shadow: inset -1px 0px 0px 0px #DDDDDD;
+}
+
+/*Modal Bug Override start*/
+.modal-backdrop.in
+{
+    opacity: 0;
+}
+
+.modal-backdrop
+{
+
+    position: relative;
+}
+/*Modal Bug Override end*/
+
+
+/*Bug Override start*/
+
+.card .content
+{
+    overflow: hidden;
+    display: block;
+}
+
+ul.navbar-nav.navbar-right li.active > a
+{
+    color: #68B3C8;
+}
+
+/*Bug Override end*/
+
+/*Gallery start*/
+
+.thumbnail:hover{
+    opacity:1.00;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: box-shadow 0.5s;
+
+}
+
+.thumbnail
+{
+    padding: 5px 5px 10px 5px;
+}
+
+/*Gallery end*/
+
+
+/*Content Container*/
+
+h1.content-title
+{
+    font-size:32px;
+    font-weight:300;
+    text-align:center;
+    font-family: 'Open Sans', sans-serif !important;
+    padding-top:20px;
+}
+/*Content Container*/
+
+
+
+/* Login  start*/
+#login-body
+{
+    background: #212120;
+}
+
+.custom-form
+{
+    padding: 0px 20px 20px 20px;
+    margin-top: 20%;
+
+    border-radius: 6px;
+    box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+    background-color: #f4f3ef;
+    /* color: #252422; */
+    margin-bottom: 20px;
+}
+
+#login-input input
+{
+    width: 100%;
+    margin-bottom: 17px;
+    padding: 15px;
+    background-color: #68B3C8;
+    border-radius: 2px;
+}
+
+#login-input input:focus
+
+{
+    background-color: #5896a8;
+}
+
+.btn-login
+{
+    border-radius: 2px;
+}
+
+
+.btn-100
+{
+    width: 100%;
+}
+
+/* Login end*/
+
+
+/*inbox start: custom fix */
+.nav-tabs.centered > li, .nav-pills.centered > li
+{
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs.centered, .nav-pills.centered
+{
+    text-align:center;
+}
+
+ul.mail-list{
+    padding:0;
+    margin:0;
+    list-style:none;
+    margin-top:30px;
+    padding-bottom: 30px;
+}
+ul.mail-list li a
+{
+    display:block;
+    border-bottom:1px dotted #CFCFCF;
+    padding:20px;
+    text-decoration:none;
+}
+
+ul.mail-list li:last-child a
+{
+    border-bottom:none;
+}
+
+ul.mail-list li a:hover
+{
+    background-color:whitesmoke;
+}
+
+ul.mail-list li span
+{
+    display:block;
+}
+
+ul.mail-list li span.mail-sender
+{
+    font-weight:600;
+    color:#8F8F8F;
+}
+
+ul.mail-list li span.mail-subject
+{
+    color:#8C8C8C;
+}
+
+ul.mail-list li span.mail-message-preview
+{
+    display:block;
+    color:#A8A8A8;
+}
+
+/*inbox end*/
+
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+    footer
+    {
+        padding-top: 20px;
+    }
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+    footer
+    {
+        padding-top: 20px;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    footer
+    {
+        padding-top: 20px;
+    }
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    footer
+    {
+        padding-top: 10px;
+    }
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+    footer
+    {
+        padding-top: 10px;
+    }
+
+}
+
+footer
+{
+    height: 48px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
