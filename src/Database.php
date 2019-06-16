@@ -12,7 +12,7 @@
 	 * Time: 13:47
 	 */
 	
-	define('DB_HOST', '173.249.33.8');
+	define('DB_HOST', 'localhost');
 	define('DB_NAME', 'mtc_trial');
 	define('DB_USER', 'mtc_trial');
 	define('DB_PASSWORD', '3Iq6FyKzuLZ6Un5M');
