@@ -12,9 +12,17 @@
 			@endif
 		</div>
 		<div class="collapse navbar-collapse">
-			
+
 			<ul class="nav navbar-nav navbar-right">
+				<li class="nav-item">
+					<a class="nav-link" href="https://bitbucket.org/Faks/mtc-trial/src/">Bitbucket</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" href="https://www.linkedin.com/in/oskars-germovs-a94b3318a/">LinkedIn</a>
+				</li>
 				<li>
+
 					@if (!empty($_SESSION['auth']))
 					<a href="/logout">
 						<i class="fa fa-sign-out"></i>

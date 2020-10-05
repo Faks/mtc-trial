@@ -1,6 +1,8 @@
 <?php
 // DIC configuration
 
+use Slim\Csrf\Guard;
+
 $container = $app->getContainer();
 
 // view renderer
@@ -19,7 +21,7 @@ $container['blade'] = function ($container)
 
 $container['csrf'] = function ($c)
 {
-	$csrf = new \Slim\Csrf\Guard;
+	$csrf = new Guard;
 	$csrf->setPersistentTokenMode(true);
 	$csrf->setFailureCallable(function ($request, $response, $next)
 	{

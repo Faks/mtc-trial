@@ -40,13 +40,14 @@
 	<div class="header">
 		<h4 class="title">Automašinas</h4>
 	</div>
-	
+
 	<div class="content">
-		
+
 		@foreach ($model as $car)
 			<div class="col-md-3">
 				<div class="thumbnail">
-					<img src=" @if (!empty($car->Image) && !is_null($car->Image)) {{ Purifier::clean($car->Image) }} @else sample.jpg @endif ">
+					<img src=" @if (!empty($car->Image) && !is_null($car->Image)) {{ Purifier::clean($car->Image) }}
+					@else http://lorempixel.com/420/420/sports/ @endif ">
 					<div class="caption">
 						<h4><a>{{ (string)Purifier::clean($car->Make) }} {{ Purifier::clean($car->Name) }}</a></h4>
 						<p>Izlaiduma gads: {{ Purifier::clean($car->Year) }}</p>

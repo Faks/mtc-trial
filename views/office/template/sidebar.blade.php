@@ -4,11 +4,11 @@
 
 <div class="sidebar-wrapper">
 	<div class="logo">
-		<a href="http://solum-designum.tk" class="simple-text">
+		<a href="http://solum-designum.eu" class="simple-text">
 			Solum DeSignum
 		</a>
 	</div>
-	
+
 	<ul class="nav" style="overflow: hidden;">
 		@if (!empty($_SESSION['auth']))
 			<li class="@if ((string)$_SERVER['PATH_INFO'] == '/office/dashboard') active @endif">

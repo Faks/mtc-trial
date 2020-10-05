@@ -38,30 +38,31 @@
 				<div class="row col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 custom-form">
 					<h2 class="text-primary text-center">Ienākt</h2>
 					
-					
 					@include('office.template.errors')
 						
 					<form class="form-horizontal" id="login-input" action="/login" method="POST">
 						<div class="form-group">
 							<div class="col-sm-12">
-								<input type="text" class="form-control" id="username" placeholder="Enter User Name" name="username">
+								<input type="text" class="form-control" id="username" name="username"
+									   placeholder="Demo: mtc-trial">
 							</div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<div class="col-sm-12">
-								<input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+								<input type="password" class="form-control" id="password" name="password"
+									   placeholder="Demo: mtc-trial">
 							</div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<div class=" col-sm-12">
 								<button class="btn btn-info btn-100"><i class="fa fa-sign-in fa-2x"></i></button>
 							</div>
 						</div>
-						
+
 						<input type="hidden" name="{{ $nameKey }}" value="{{ $name }}">
 						<input type="hidden" name="{{ $valueKey }}" value="{{ $value }}">
 					
