@@ -24,7 +24,8 @@
         "rubellum/slim-blade-view": "^0.1.1",
         "slim/csrf": "^0.8.3",
         "illuminate/pagination":"5.2.*",
-        "peppeocchi/php-cron-scheduler": "^2.3"
+        "peppeocchi/php-cron-scheduler": "^2.3",
+        "ext-pdo": "*"
     },
 	"autoload": {
 	  "classmap": [
