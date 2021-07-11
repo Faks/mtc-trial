@@ -6,7 +6,7 @@ namespace App\Controllers\Api\Filters;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use src\Models\Cars;
+use App\Models\Cars;
 
 class CarNameController
 {
