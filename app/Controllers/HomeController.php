@@ -289,11 +289,9 @@ class HomeController extends BaseController
     public function showCarsSearchListing()
     {
         if (! empty($_SERVER['QUERY_STRING'])) {
-            return Cars::Filter(array_filter($_GET))->OrderBy('id', 'desc')->paginate(8)->setPath(
-                '?' . $_SERVER['QUERY_STRING']
-            );
+            return Cars::Filter(array_filter($_GET))->OrderBy('id', 'desc')->paginate(8);
         } else {
-            return Cars::Filter(array_filter($_GET))->OrderBy('id', 'desc')->paginate(8)->setPath('/');
+            return Cars::Filter(array_filter($_GET))->OrderBy('id', 'desc')->paginate(8);
         }
     }
 
