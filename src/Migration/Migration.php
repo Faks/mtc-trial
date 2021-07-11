@@ -20,11 +20,9 @@ use Phinx\Migration\AbstractMigration;
 
 class Migration extends AbstractMigration
 {
-    /** @var Capsule $capsule */
-    public $capsule;
+    public Capsule $capsule;
 
-    /** @var Builder $capsule */
-    public $schema;
+    public Builder $schema;
 
     public function init()
     {
@@ -44,6 +42,6 @@ class Migration extends AbstractMigration
 
         $this->capsule->bootEloquent();
         $this->capsule->setAsGlobal();
-        $this->schema = $this->capsule->schema();
+        $this->schema = $this->capsule->schema('default');
     }
 }

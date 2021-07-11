@@ -1,35 +1,43 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Faks
- * GitHub: https://github.com/Faks
- *******************************************
- * Company Name: Solum DeSignum
- * Company Website: http://solum-designum.com
- * Company GitHub: https://github.com/SolumDeSignum
- ********************************************************
- * Date: 2018.10.04.
- * Time: 14:26
- */
-require_once 'src/Database.php';
+require_once 'config/database.php';
 
-return [
+return
+[
     'paths' => [
         'migrations' => 'migrations',
+        'seeds' => '%%PHINX_CONFIG_DIR%%/db/seeds'
     ],
-    'migration_base_class' => '\MyProject\Migration\Migration',
     'environments' => [
         'default_migration_table' => 'phinxlog',
-        'default_database' => 'dev',
-        'dev' => [
+        'default_environment' => 'development',
+        'production' => [
             'adapter' => 'mysql',
             'host' => DB_HOST,
             'name' => DB_NAME,
             'user' => DB_USER,
             'pass' => DB_PASSWORD,
             'port' => DB_PORT,
-            'strict' => DB_STRICT,
+            'charset' => 'utf8',
         ],
+        'development' => [
+            'adapter' => 'mysql',
+            'host' => DB_HOST,
+            'name' => DB_NAME,
+            'user' => DB_USER,
+            'pass' => DB_PASSWORD,
+            'port' => DB_PORT,
+            'charset' => 'utf8',
+        ],
+        'testing' => [
+            'adapter' => 'mysql',
+            'host' => DB_HOST,
+            'name' => DB_NAME,
+            'user' => DB_USER,
+            'pass' => DB_PASSWORD,
+            'port' => DB_PORT,
+            'charset' => 'utf8',
+        ]
     ],
+    'version_order' => 'creation'
 ];

@@ -5,7 +5,7 @@ use src\Migration\Migration;
 
 class CarsMigration extends Migration
 {
-    public function up()
+    public function up(): void
     {
         $this->schema->create(
             'cars',
@@ -34,7 +34,7 @@ class CarsMigration extends Migration
         );
     }
 
-    public function down()
+    public function down(): void
     {
         $this->schema->dropIfExists('cars');
     }

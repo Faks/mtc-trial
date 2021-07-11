@@ -5,7 +5,7 @@ use src\Migration\Migration;
 
 class UsersMigration extends Migration
 {
-    public function up()
+    public function up(): void
     {
         $this->schema->create(
             'users',
@@ -19,7 +19,7 @@ class UsersMigration extends Migration
         );
     }
 
-    public function down()
+    public function down(): void
     {
         $this->schema->dropIfExists('users');
     }

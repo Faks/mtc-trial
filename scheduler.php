@@ -14,8 +14,8 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use App\Controllers\Api\CarsApiController;
 use GO\Scheduler;
-use src\Controllers\APIController;
 
 // Create a new scheduler
 $scheduler = new Scheduler();
@@ -24,7 +24,7 @@ $scheduler = new Scheduler();
 $scheduler->call
 (
     [
-        APIController::init()->DoCreateCars()
+        (new CarsApiController())->store()
     ]
 )->everyFiveMinutes();
 

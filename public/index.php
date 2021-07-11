@@ -1,37 +1,73 @@
 <?php
 
-use Slim\App;
+declare(strict_types=1);
 
-if (PHP_SAPI == 'cli-server') {
-    // To help the built-in PHP dev server, check if the request was actually for
-    // something which should probably be served as a static file
-    $url = parse_url($_SERVER['REQUEST_URI']);
-    $file = __DIR__ . $url['path'];
-    if (is_file($file)) {
-        return false;
-    }
-}
+use App\Application\Handlers\HttpErrorHandler;
+use App\Application\Handlers\ShutdownHandler;
+use DI\ContainerBuilder;
+use Slim\Factory\AppFactory;
+use Slim\Factory\ServerRequestCreatorFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-session_start();
+// Instantiate PHP-DI ContainerBuilder
+$containerBuilder = new ContainerBuilder();
 
-// Instantiate the app
-$settings = require __DIR__ . '/../src/settings.php';
-$app = new App($settings);
+if (false) { // Should be set to true in production
+    $containerBuilder->enableCompilation(__DIR__ . '/../var/cache');
+}
+
+// Set up settings
+$settings = require __DIR__ . '/../config/settings.php';
+$settings($containerBuilder);
 
 // Set up dependencies
-require __DIR__ . '/../src/dependencies.php';
+$dependencies = require __DIR__ . '/../config/dependencies.php';
+$dependencies($containerBuilder);
+
+// Build PHP-DI Container instance
+$container = $containerBuilder->build();
+
+// Instantiate the app
+AppFactory::setContainer($container);
+$app = AppFactory::create();
+
+$callableResolver = $app->getCallableResolver();
 
 // Register middleware
-require __DIR__ . '/../src/middleware.php';
+$middleware = require __DIR__ . '/../config/middleware.php';
+$middleware($app);
 
-require __DIR__ . '/../src/routes.php';
+// Register routes
+$routes = require __DIR__ . '/../routes/web.php';
+$routes($app);
 
-$container = $app->getContainer();
-$capsule = new Illuminate\Database\Capsule\Manager;
-$capsule->addConnection($container->get('settings')['db']);
-$capsule->bootEloquent();
+/**
+ * @var ContainerBuilder
+ */
+$settings = $container->get('settings');
 
-// Run app
+// Create Request object from globals
+$serverRequestCreator = ServerRequestCreatorFactory::create();
+$request = $serverRequestCreator->createServerRequestFromGlobals();
+
+// Create Error Handler
+$responseFactory = $app->getResponseFactory();
+$errorHandler = new HttpErrorHandler($callableResolver, $responseFactory);
+
+// Create Shutdown Handler
+$shutdownHandler = new ShutdownHandler($request, $errorHandler, $settings['displayErrorDetails']);
+register_shutdown_function($shutdownHandler);
+
+// Add Routing Middleware
+$app->addRoutingMiddleware();
+
+// Add Error Middleware
+$errorMiddleware = $app->addErrorMiddleware($settings['debug'], ! $settings['debug'], false);
+$errorMiddleware->setDefaultErrorHandler($errorHandler);
+
+// Register Eloquent
+$app->getContainer()->get('capsule');
+
+// Run the app
 $app->run();
