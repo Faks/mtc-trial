@@ -1,16 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Faks
- * GitHub: https://github.com/Faks
- *******************************************
- * Company Name: Solum DeSignum
- * Company Website: http://solum-designum.com
- * Company GitHub: https://github.com/SolumDeSignum
- ********************************************************
- * Date: 2018.10.05.
- * Time: 20:50
- */
+
+declare(strict_types=1);
 
 namespace App\Middleware;
 
@@ -20,7 +10,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 
-use function dd;
 use function strtok;
 
 class PaginationMiddleware implements Middleware
@@ -40,8 +29,7 @@ class PaginationMiddleware implements Middleware
         // Set up a current page resolver
         Paginator::currentPageResolver(
             function ($pageName = 'page') {
-                $page = isset($_REQUEST[$pageName]) ? $_REQUEST[$pageName] : 1;
-                return $page;
+                return $_REQUEST[$pageName] ?? 1;
             }
         );
 

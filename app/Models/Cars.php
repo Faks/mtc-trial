@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cars extends Model
 {
-    /**
-     * @var string
-     */
     protected $table = 'cars';
 
     protected $fillable =

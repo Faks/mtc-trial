@@ -5,7 +5,7 @@ require_once 'config/database.php';
 return
 [
     'paths' => [
-        'migrations' => 'migrations',
+        'migrations' => 'database/migrations',
         'seeds' => '%%PHINX_CONFIG_DIR%%/db/seeds'
     ],
     'environments' => [

@@ -13,7 +13,7 @@ return function (ContainerBuilder $containerBuilder) {
         [
             'settings' => [
                 // Base path
-                'base_path' => '',
+                'base_path' => '/',
                 'displayErrorDetails' => true,  // set to false in production
                 'addContentLengthHeader' => false, // Allow the web server to send the content-length header
                 // Is debug mode

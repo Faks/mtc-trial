@@ -1,18 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Faks
- * GitHub: https://github.com/Faks
- *******************************************
- * Company Name: Solum DeSignum
- * Company Website: http://solum-designum.com
- * Company GitHub: https://github.com/SolumDeSignum
- ********************************************************
- * Date: 2018.10.04.
- * Time: 13:56
- */
 
-namespace src\Migration;
+declare(strict_types=1);
+
+namespace Database\Migration;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Schema\Builder;
@@ -24,7 +14,7 @@ class Migration extends AbstractMigration
 
     public Builder $schema;
 
-    public function init()
+    public function init(): void
     {
         $this->capsule = new Capsule;
         $this->capsule->addConnection(

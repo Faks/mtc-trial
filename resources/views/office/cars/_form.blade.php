@@ -1,7 +1,11 @@
 <div class="content">
 	@include('office.template.errors')
 	
-	<form action="{{ $action }}" class="form-horizontal" method="post" enctype="multipart/form-data" style="margin-left: 5%;">
+	<form action="{{ $action }}"
+		  method="post"
+		  enctype="multipart/form-data"
+		  class="form-horizontal"
+		  style="margin-left: 5%;">
 		
 		<div class="row">
 			<div class="col-md-8">
@@ -216,10 +220,9 @@
 		
 		<input type="hidden" name="{{ $nameKey }}" value="{{ $name }}">
 		<input type="hidden" name="{{ $valueKey }}" value="{{ $value }}">
-		
+
 		<div class="row">
-			<button name="id" value="{{ $model->id ?? false }}" class="btn btn-default btn-info btn-default" type="submit">Saglabāt</button>
+			<button name="id" class="btn btn-default btn-info btn-default" type="submit">Saglabāt</button>
 		</div>
-		
 	</form>
 </div>

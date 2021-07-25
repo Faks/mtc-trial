@@ -1,27 +1,12 @@
-# Slim Framework 3 Skeleton Application
+# Slim 4 MVC Skeleton
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2154b570bb974bb1ae6d4d40bcd75fd4)](https://app.codacy.com/app/semhoun/slim-skeleton-mvc?utm_source=github.com&utm_medium=referral&utm_content=semhoun/slim-skeleton-mvc&utm_campaign=Badge_Grade_Dashboard) [![Latest Stable Version](https://poser.pugx.org/semhoun/slim-skeleton-mvc/v/stable)](https://packagist.org/packages/semhoun/slim-skeleton-mvc) [![Total Downloads](https://poser.pugx.org/semhoun/slim-skeleton-mvc/downloads)](https://packagist.org/packages/semhoun/slim-skeleton-mvc) [![Latest Unstable Version](https://poser.pugx.org/semhoun/slim-skeleton-mvc/v/unstable)](https://packagist.org/packages/semhoun/slim-skeleton-mvc) [![License](https://poser.pugx.org/semhoun/slim-skeleton-mvc/license)](https://packagist.org/packages/semhoun/slim-skeleton-mvc) [![Monthly Downloads](https://poser.pugx.org/semhoun/slim-skeleton-mvc/d/monthly)](https://packagist.org/packages/semhoun/slim-skeleton-mvc)
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
-
-## Install the Application
-
-Run this command from the directory in which you want to install your new Slim Framework application.
-
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
-
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
-
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can run these commands 
-
-	cd [my-app-name]
-	php composer.phar start
-
-Run this command in the application directory to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
+This is a simple web application skeleton project that uses the [Slim4 Framework](http://www.slimframework.com/):
+* [PHP-DI](http://php-di.org/) as dependency injection container
+* [Slim-Psr7](https://github.com/slimphp/Slim-Psr7) as PSR-7 implementation
+* [Doctrine](https://github.com/doctrine/orm) as ORM
+* [Twig](https://twig.symfony.com/) as template engine
+* [Flash messages](https://github.com/slimphp/Slim-Flash)
+* [Monolog](https://github.com/Seldaek/monolog)
+* [Console](https://github.com/symfony/console)

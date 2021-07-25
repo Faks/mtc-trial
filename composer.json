@@ -17,11 +17,6 @@
             "name": "Oskars Germovs",
             "email": "oskars_germovs@inbox.lv",
             "homepage": "https://solum-designum.eu"
-        },
-        {
-            "name": "Nathanael Semhoun",
-            "email": "nathanael@semhoun.net",
-            "homepage": "http://www.semhoun.net"
         }
     ],
     "require": {
@@ -70,5 +65,4 @@
         "start": "php -S localhost:8080 -t public",
         "test": "phpunit"
     }
-
 }

@@ -4,7 +4,10 @@
 	<div class="header">
 		<h4 class="title">Automašinas
 			<small class="pull-right">
-				<a class="" href="/office/dashboard/cars/create"><span class="fa fa-plus"></span> Pievienot Automašinu</a>
+				<a class="#"
+				   href="/office/dashboard/cars/create">
+					<span class="fa fa-plus"></span> Pievienot Automašinu
+				</a>
 			</small>
 		</h4>
 	</div>
@@ -73,14 +76,18 @@
 						
 						
 						<div class="col-xs-2 text-center ">
-							<a href="{{ '/office/dashboard/car/update/' . $cars_listing->id }}" class="btn btn-sm btn-success btn-icon"><i class="fa fa-edit"></i></a>
-							<a href="{{ '/office/dashboard/car/destroy/' . $cars_listing->id }}" class="btn btn-sm btn-success btn-icon" data-toggle="modal"  data-target="#Confirm"><i class="fa fa-trash"></i></a>
+							<a href="{{ '/office/dashboard/cars/' . $cars_listing->id }}"
+							   class="btn btn-sm btn-success btn-icon">
+								<i class="fa fa-edit"></i>
+							</a>
+							<a href="{{ "/office/dashboard/cars/$cars_listing->id/destroy" }}"
+							   class="btn btn-sm btn-success btn-icon">
+								<i class="fa fa-trash"></i>
+							</a>
 						</div>
 					</div>
 				</li>
 			@endforeach
-			
-		
 		</ul>
 
 		@include('pagination.default', ['paginator' => $model, 'elements' => $model])

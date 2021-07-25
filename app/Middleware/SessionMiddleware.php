@@ -12,7 +12,7 @@ use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 
 class SessionMiddleware implements Middleware, ArrayAccess
 {
-    private $storage;
+    private mixed $storage;
 
     public function __construct()
     {
@@ -40,7 +40,7 @@ class SessionMiddleware implements Middleware, ArrayAccess
     /**
      * ArrayAccess for storage
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->storage[] = $value;
@@ -49,17 +49,17 @@ class SessionMiddleware implements Middleware, ArrayAccess
         }
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->storage[$offset]);
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->storage[$offset]);
     }
 
-    public function &offsetGet($offset)
+    public function &offsetGet($offset): mixed
     {
         if ($this->offsetExists($offset)) {
             return $this->storage[$offset];

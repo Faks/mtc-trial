@@ -25,7 +25,7 @@ class AuthController extends BaseController
 
         return $this->render(
             $response,
-            'login',
+            'auth.login',
             compact(
                 'errors',
                 'nameKey',
@@ -45,7 +45,9 @@ class AuthController extends BaseController
         $store->password = \hash('sha512', PurifierService::clean($params['password']));
         $store->save();
 
-        return $response->withHeader('Location', '/login')->withStatus(302);
+        return $response
+            ->withHeader('Location', '/login')
+            ->withStatus(302);
     }
 
     /**
@@ -89,7 +91,7 @@ class AuthController extends BaseController
 
             return $this->render(
                 $response,
-                'login',
+                'auth.login',
                 compact(
                     'errors',
                     'nameKey',
@@ -116,7 +118,12 @@ class AuthController extends BaseController
         #Removing Error Text
         unset($session['errors']);
 
-        return $response->withHeader('Location', '/office/dashboard')->withStatus(302);
+        return $response
+            ->withHeader(
+                'Location',
+                '/office/dashboard'
+            )
+            ->withStatus(302);
     }
 
     /**
@@ -129,6 +136,8 @@ class AuthController extends BaseController
         session_unset();
         session_destroy();
 
-        return $response->withHeader('Location', '/login')->withStatus(302);
+        return $response
+            ->withHeader('Location', '/login')
+            ->withStatus(302);
     }
 }

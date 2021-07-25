@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Validation\ValidatorFactory;
 use HTMLPurifier;
 use Illuminate\Validation\Factory;
 use Jenssegers\Blade\Blade;
@@ -32,7 +33,7 @@ abstract class BaseController
         $this->logger = $container->get('logger');
         $this->csrf = $container->get('csrf');
         $this->purifier = $container->get('purifier');
-        $this->validator = (new \App\Validation\ValidatorFactory())->factory;
+        $this->validator = (new ValidatorFactory())->factory;
     }
 
     /**
@@ -71,5 +72,4 @@ abstract class BaseController
     {
         return $response->withHeader('Location', '/login');
     }
-
 }
