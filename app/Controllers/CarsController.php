@@ -41,6 +41,10 @@ class CarsController extends BaseController
 
     public function create(Request $request, Response $response, array $args = []): Response
     {
+        if ($this->isAuthenticated($request)) {
+            return $this->locationLogin($response);
+        }
+
         // CSRF token name and value
         $nameKey = $this->csrf->getTokenNameKey();
         $valueKey = $this->csrf->getTokenValueKey();
@@ -63,6 +67,10 @@ class CarsController extends BaseController
 
     public function store(Request $request, Response $response, array $args = []): Response
     {
+        if ($this->isAuthenticated($request)) {
+            return $this->locationLogin($response);
+        }
+
         // CSRF token name and value
         $nameKey = $this->csrf->getTokenNameKey();
         $valueKey = $this->csrf->getTokenValueKey();
@@ -241,6 +249,10 @@ class CarsController extends BaseController
 
     public function edit(Request $request, Response $response, array $args = []): Response
     {
+        if ($this->isAuthenticated($request)) {
+            return $this->locationLogin($response);
+        }
+
         // CSRF token name and value
         $nameKey = $this->csrf->getTokenNameKey();
         $valueKey = $this->csrf->getTokenValueKey();
@@ -273,6 +285,10 @@ class CarsController extends BaseController
 
     public function update(Request $request, Response $response, array $args = []): Response
     {
+        if ($this->isAuthenticated($request)) {
+            return $this->locationLogin($response);
+        }
+
         // CSRF token name and value
         $nameKey = $this->csrf->getTokenNameKey();
         $valueKey = $this->csrf->getTokenValueKey();
@@ -439,6 +455,10 @@ class CarsController extends BaseController
 
     public function destroy(Request $request, Response $response, array $args = []): Response
     {
+        if ($this->isAuthenticated($request)) {
+            return $this->locationLogin($response);
+        }
+
         try {
             $destroyCar = Cars::query()
                 ->findOrFail($args['id']);

@@ -50,7 +50,14 @@ class CarsApiController extends BaseController
      */
     public function store(Request $request, Response $response, array $args = []): Response
     {
-        foreach ((array)json_decode($this->init(), true, 512, JSON_THROW_ON_ERROR) as $item => $key) {
+        if ($this->isAuthenticated($request)) {
+            return $this->locationLogin($response);
+        }
+
+        foreach (
+            (array)json_decode($this->init(), true, 512, JSON_THROW_ON_ERROR)
+            as $item => $key
+        ) {
             foreach ((array)$key as $car_item => $car_key) {
                 Cars::query()->updateOrCreate(
                     [
